@@ -1,0 +1,9 @@
+db.books.insertOne({
+    title: 'Harry Potter',
+    author: 'JK Rolling',
+    year: 2001,
+    isbn: '48652856423874',
+    pages: 300,
+    language: 'English'
+
+})o
