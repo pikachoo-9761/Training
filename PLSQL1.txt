@@ -1,0 +1,109 @@
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(100) UNIQUE
+);
+ 
+-----------------------------------
+ 
+CREATE TABLE employees (
+    employee_id INT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone_number VARCHAR(20),
+    hire_date DATE,
+    job_title VARCHAR(100),
+    salary DECIMAL(10, 2),
+    department_id INT,
+    CONSTRAINT pk_employee_id PRIMARY KEY(employee_id),
+    CONSTRAINT fk_department_id FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+
+CREATE TABLE multimedia_data (
+    file_id NUMBER PRIMARY KEY,
+    file_name VARCHAR2(100),
+    file_data BFILE
+);
+
+CREATE DIRECTORY IMAGES_DIR AS 'C:\Users\AzureAdmin\Downloads\Images';
+
+insert into MULTIMEDIA_DATA (FILE_ID,FILE_NAME,FILE_DATA) values (1,'blooming-lotus-flower-selective-focus-photography-wallpaper', BFILENAME('IMAGES_DIR','blooming-lotus-flower-selective-focus-photography-wallpaper'));
+ 
+select file_id, file_name from MULTIMEDIA_DATA;
+
+-----------------------
+
+CREATE TABLE sample_data
+(
+    id NUMBER PRIMARY KEY,
+    data BLOB
+)LOB(data) STORE AS SECUREFILE (DEDUPLICATE COMPRESS HIGH);
+
+-------------------------------------------
+
+
+
+INSERT INTO departments (department_id, department_name) VALUES (1, 'Sales');
+INSERT INTO departments (department_id, department_name) VALUES (2, 'Marketing');
+INSERT INTO departments (department_id, department_name) VALUES (3, 'Human Resources');
+INSERT INTO departments (department_id, department_name) VALUES (4, 'Finance');
+INSERT INTO departments (department_id, department_name) VALUES (5, 'IT');
+
+
+  INSERT INTO employees (
+        employee_id, 
+        first_name, 
+        last_name, 
+        email, 
+        phone_number, 
+        hire_date, 
+        job_title, 
+        salary, 
+        department_id)
+    VALUES (
+        1, 
+        'John', 
+        'Doe', 
+        'john.doe@example.com', 
+        '1234567890', 
+        TO_DATE('2024-03-13', 'YYYY-MM-DD'), 
+        'Manager', 
+        50000.00, 
+        1);
+
+SET SERVEROUTPUT ON;
+DECLARE
+    TYPE emp_type IS TABLE OF employees%ROWTYPE; -- create a nested table of employees type
+    emp_data emp_type;
+BEGIN
+    SELECT * BULK COLLECT INTO emp_data FROM employees;
+    FOR i IN 1..emp_data.COUNT LOOP
+        DBMS_OUTPUT.PUT_LINE(emp_data(i).first_name || ' ' || emp_data(i).last_name);
+    END LOOP;
+END;
+
+
+DECLARE
+    v_emp_id employees.employee_id%TYPE := 1;
+    v_emp_name employees.first_name%TYPE;
+BEGIN
+    SELECT first_name INTO v_emp_name
+    FROM employees
+    WHERE employee_id = v_emp_id;
+ 
+    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_emp_name);
+END;
+
+
+
+
+DECLARE
+    v_emp_id employees.employee_id%TYPE := 1;
+    v_salary employees.salary%TYPE :=5000;
+    v_bonus employees.salary%TYPE := v_salary * 0.1;
+BEGIN
+   
+    INSERT INTO bonuses (employee_id, bonus) VALUES (v_emp_id, v_bonus);
+ 
+    DBMS_OUTPUT.PUT_LINE('Employee Bonus: ' || v_bonus);
+END;
