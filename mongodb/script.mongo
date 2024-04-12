@@ -1,0 +1,124 @@
+db.getCollectionNames();
+
+db.products.insertOne({
+    name: 'Laptop',
+    price: 12.99,
+    stock: 10,
+    brand: "Dell",
+    category: "Electronics",
+    modelName: "Inspiron 15 3000"
+});
+
+db.products.insertMany([
+    {
+        name: 'Mobile',
+        price: 7.99,
+        stock: 7,
+        brand: "Apple",
+        category: "Electronics",
+        modelName: "Iphone 14"
+    },
+    {
+        name: 'Tablet',
+        price: 9.99,
+        stock: 8,
+        brand: "Apple",
+        category: "Electronics",
+        modelName: "Ipad Pro"
+    }
+]);
+
+db.products.insertMany([
+    {
+        name: 'Mobile',
+        price: 7.99,
+        stock: 7,
+        brand: "Samsung",
+        category: "Electronics",
+        modelName: "Glaxy S20"
+    },
+    {
+        name: 'Tablet',
+        price: 9.99,
+        stock: 8,
+        brand: "Apple",
+        category: "Electronics",
+        modelName: "Ipad Pro 2"
+    }
+]);
+
+db.products.find();
+
+db.products.find({name: 'Mobile'});
+
+db.products.find({name: 'Mobile'}, {name: 1, price: 1});
+
+db.products.find({name: 'Mobile'}, {name: 0, price: 0});
+
+db.products.find({name: 'Mobile'}, {name: 1, price: 1, _id: 0});
+
+db.products.find({name: 'Mobile'}, {name: 0, price: 0, _id: 0});
+
+db.products.find({}, {name: 0, price: 0})
+
+db.products.findOne({name: 'Mobile'});
+
+db.products.find({name: 'Mobile'}).limit(1);
+
+db.products.find().sort({price: 1});
+
+db.products.find().sort({price: -1});
+
+db.products.find().sort({name: 1, price: -1});
+
+db.products.updateOne(
+{ _id: ObjectId("6613dbc67de84df68fbb45e0")},
+{ $set:{price: 15.99, stock: 5}} 
+);
+
+db.products.updateOne(
+{
+    _id: ObjectId("6613ce5f7de84df68fbb4578")
+},
+{
+    $set: {
+        name: 'TV',
+        price: 700,
+        stock: 17,
+        brand: "Sony",
+        category: "Electronics",
+        modelName: "Bravia 55 inch"
+    }
+},
+{
+    upsert: true
+});
+
+db.products.update(
+{name: 'Laptop'},
+{
+    $unset:{
+        name: ""
+    }
+});
+
+db.products.update(
+{name: "Mobile"},
+{
+    $unset:{
+        name: ""
+    }
+},
+{multi: true});
+
+db.products.updateMany(
+{name: 'Laptop'},
+{
+    $unset:{
+        name: ""
+    }
+});
+
+db.products.deleteOne({_id : ObjectId('6613dbc67de84df68fbb45e0')});
+
+db.products.deleteMany({"name": "Tablet"});

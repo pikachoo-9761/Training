@@ -1,0 +1,310 @@
+db.employees.insertMany(
+[
+    {
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": "john.doe@example.com",
+        "mobile": "123-456-7890",
+        "salary": 60000,
+        "department": "Sales"
+    },
+    {
+        "firstname": "Jane",
+        "lastname": "Smith",
+        "email": "jane.smith@example.com",
+        "mobile": "234-567-8901",
+        "salary": 65000,
+        "department": "Marketing"
+    },
+    {
+        "firstname": "Michael",
+        "lastname": "Johnson",
+        "email": "michael.johnson@example.com",
+        "mobile": "345-678-9012",
+        "salary": 70000,
+        "department": "Finance"
+    },
+    {
+        "firstname": "Emily",
+        "lastname": "Brown",
+        "email": "emily.brown@example.com",
+        "mobile": "456-789-0123",
+        "salary": 62000,
+        "department": "HR"
+    },
+    {
+        "firstname": "David",
+        "lastname": "Williams",
+        "email": "david.williams@example.com",
+        "mobile": "567-890-1234",
+        "salary": 68000,
+        "department": "IT"
+    },
+    {
+        "firstname": "Jessica",
+        "lastname": "Jones",
+        "email": "jessica.jones@example.com",
+        "mobile": "678-901-2345",
+        "salary": 73000,
+        "department": "Sales"
+    },
+    {
+        "firstname": "Matthew",
+        "lastname": "Martinez",
+        "email": "matthew.martinez@example.com",
+        "mobile": "789-012-3456",
+        "salary": 61000,
+        "department": "Marketing"
+    },
+    {
+        "firstname": "Jennifer",
+        "lastname": "Taylor",
+        "email": "jennifer.taylor@example.com",
+        "mobile": "890-123-4567",
+        "salary": 72000,
+        "department": "Finance"
+    },
+    {
+        "firstname": "Christopher",
+        "lastname": "Garcia",
+        "email": "christopher.garcia@example.com",
+        "mobile": "901-234-5678",
+        "salary": 63000,
+        "department": "HR"
+    },
+    {
+        "firstname": "Amanda",
+        "lastname": "Rodriguez",
+        "email": "amanda.rodriguez@example.com",
+        "mobile": "012-345-6789",
+        "salary": 69000,
+        "department": "IT"
+    },
+    {
+        "firstname": "Daniel",
+        "lastname": "Hernandez",
+        "email": "daniel.hernandez@example.com",
+        "mobile": "123-456-7890",
+        "salary": 74000,
+        "department": "Sales"
+    },
+    {
+        "firstname": "Ashley",
+        "lastname": "Lopez",
+        "email": "ashley.lopez@example.com",
+        "mobile": "234-567-8901",
+        "salary": 62000,
+        "department": "Marketing"
+    },
+    {
+        "firstname": "James",
+        "lastname": "Gonzalez",
+        "email": "james.gonzalez@example.com",
+        "mobile": "345-678-9012",
+        "salary": 71000,
+        "department": "Finance"
+    },
+    {
+        "firstname": "Sarah",
+        "lastname": "Perez",
+        "email": "sarah.perez@example.com",
+        "mobile": "456-789-0123",
+        "salary": 64000,
+        "department": "HR"
+    },
+    {
+        "firstname": "Robert",
+        "lastname": "Wilson",
+        "email": "robert.wilson@example.com",
+        "mobile": "567-890-1234",
+        "salary": 70000,
+        "department": "IT"
+    },
+    {
+        "firstname": "Megan",
+        "lastname": "Torres",
+        "email": "megan.torres@example.com",
+        "mobile": "678-901-2345",
+        "salary": 75000,
+        "department": "Sales"
+    },
+    {
+        "firstname": "William",
+        "lastname": "Rivera",
+        "email": "william.rivera@example.com",
+        "mobile": "789-012-3456",
+        "salary": 63000,
+        "department": "Marketing"
+    },
+    {
+        "firstname": "Stephanie",
+        "lastname": "Washington",
+        "email": "stephanie.washington@example.com",
+        "mobile": "890-123-4567",
+        "salary": 72000,
+        "department": "Finance"
+    },
+    {
+        "firstname": "Joseph",
+        "lastname": "Evans",
+        "email": "joseph.evans@example.com",
+        "mobile": "901-234-5678",
+        "salary": 66000,
+        "department": "HR"
+    },
+    {
+        "firstname": "Lauren",
+        "lastname": "Gomez",
+        "email": "lauren.gomez@example.com",
+        "mobile": "012-345-6789",
+        "salary": 71000,
+        "department": "IT"
+    },
+    {
+        "firstname": "Kevin",
+        "lastname": "Diaz",
+        "email": "kevin.diaz@example.com",
+        "mobile": "123-456-7890",
+        "salary": 76000,
+        "department": "Sales"
+    },
+    {
+        "firstname": "Elizabeth",
+        "lastname": "Reyes",
+        "email": "elizabeth.reyes@example.com",
+        "mobile": "234-567-8901",
+        "salary": 64000,
+        "department": "Marketing"
+    },
+    {
+        "firstname": "Jason",
+        "lastname": "Stewart",
+        "email": "jason.stewart@example.com",
+        "mobile": "345-678-9012",
+        "salary": 73000,
+        "department": "Finance"
+    },
+    {
+        "firstname": "Michelle",
+        "lastname": "Morales",
+        "email": "michelle.morales@example.com",
+        "mobile": "456-789-0123",
+        "salary": 67000,
+        "department": "HR"
+    },
+    {
+        "firstname": "Ryan",
+        "lastname": "Sanchez",
+        "email": "ryan.sanchez@example.com",
+        "mobile": "567-890-1234",
+        "salary": 72000,
+        "department": "IT"
+    },
+    {
+        "firstname": "Kimberly",
+        "lastname": "Rogers",
+        "email": "kimberly.rogers@example.com",
+        "mobile": "678-901-2344",
+        "salary": 77000,
+        "department": "Sales"
+    }
+]);
+
+db.employees.count();
+
+//use aggregation pipeline to group employees.
+db.employees.aggregate([
+    {
+        $group: {
+            _id: "$department",
+            avgSalary: { $avg: "$salary"}
+        },
+    },
+    {
+        $sort: {
+            avgSalary: -1
+        }
+    },
+    {
+        $limit: 3
+    },
+    {
+        $project: {
+            _id: 0,
+            department: "$_id",
+            avgSalary: 1
+        }
+    }
+]);
+
+db.employees.aggregate([
+    {
+        $group: {
+            _id: "$department",
+            avgSalary: { $avg: "$salary"}
+        },
+    },
+    {
+        $match: {
+            avgSalary: {$gte: 70000}
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            department: "$_id",
+            avgSalary: 1
+        }
+    }
+])
+
+db.employees.aggregate([
+    {
+        $match: {
+            $and:[
+                {salary: {$gte: 65000}},
+                {salary: {$lte: 75000}}
+            ]
+        }
+    },
+    {
+        $count: "emp_count"
+    }
+])
+
+db.employees.aggregate([
+    {
+        $match: {
+            $and:[
+                {salary: {$gte: 65000}},
+                {salary: {$lte: 75000}}
+            ]
+        }
+    },
+    {
+        $sort: {
+            avgSalary: -1
+        }
+    },
+    {
+        $group: {
+            _id: "$department",
+            count: {$sum: 1},
+            avgSalary: { $avg: "$salary"},
+            minSalary: { $min: "$salary"},
+            maxSalary: { $max: "$salary"},
+            totalSalary: { $sum: "$Salary"}
+        }
+    },
+    {
+     $project: {
+            _id: 0,
+            department: "$_id",
+            count: 1,
+            avgSalary: 1,
+            minSalary: 1,
+            maxSalary: 1,
+            totalSalary: 1
+        }
+    }
+])
